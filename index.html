@@ -1,0 +1,170 @@
+<html lang="ar"><head>
+
+<meta http-equiv="refresh" content="60">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">   
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<title>معلومات الكرت</title>
+<link rel="stylesheet" href="./resources/style.css">
+<script src="./resources/jquery.js"></script>
+<script language="javascript">
+function hideHalfCard(input) {
+    var rv = input.toLowerCase();
+	
+	//hide macs
+	if(rv.indexOf(":") >= 0)
+    {
+        return "اشتراك";
+    }
+	
+    var shown_count = Math.ceil(rv.length / 2);
+
+    rv = rv.substring(0, shown_count);
+
+    for (i = 0; i < (input.length - shown_count); i++) {
+        rv += "*";
+    }
+
+    return rv;
+}
+
+
+function arabicBytes(original)
+{
+	var rv;
+	var int1 = original;
+	var GB = " جيجابايت ", MB = " ميجابايت ", KB = " كيلوبايت ", B = " بايت ";
+	if(int1 < 1000) rv = int1 + B;
+	else if(int1 < (1000 * 1000)) rv = Math.round(int1 / 1000) + KB; 
+	else if(int1 < (1000 * 1000 * 1000)) rv = Math.round(int1 / (1000 * 1000)) + MB;
+	else rv = Math.round(int1 / (1000 * 1000 * 1000)) + GB;
+	return rv;					 
+}
+
+</script>
+
+
+<script language="JavaScript">
+
+function readablizeBytes(bytes) {
+var s = ['bytes', 'kb', 'MB', 'GB', 'TB', 'PB'];
+var e = Math.floor(Math.log(bytes)/Math.log(1000));
+return (bytes/Math.pow(1000, Math.floor(e))).toFixed(2)+" "+s[e];
+}
+</script>
+
+<script language="JavaScript">
+
+function readablizeBytes(bytes) {
+var s = ['&#1576;&#1575;&#1610;&#1578;', '&#1603;&#1610;&#1604;&#1608;&#1576;&#1575;&#1610;&#1578;', '&#1605;&#1610;&#1580;&#1575;&#1576;&#1575;&#1610;&#1578;', '&#1580;&#1610;&#1580;&#1575;&#1576;&#1575;&#1610;&#1578;', '&#1578;&#1610;&#1585;&#1575;&#1576;&#1575;&#1610;&#1578;', 'PB'];
+var e = Math.floor(Math.log(bytes)/Math.log(1000));
+return (bytes/Math.pow(1000, Math.floor(e))).toFixed(2)+" "+s[e];
+}
+</script>
+
+<script>
+
+
+    function openLogout() {
+	if (window.name != 'hotspot_status') return true;
+        open('http://www.saber.wifi/logout', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+	window.close();
+	return false;
+    }
+</script>
+    
+ <script type="text/javascript" language="javascript">
+ function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+ }
+ function removecookie(){
+  setCookie("uname", "" , 1);
+ }
+
+</script>
+</head>
+<body class="dark" dir="rtl">
+    <div class="ie-fixMinHeight">
+        <div class="main">
+            <div class="wrap">
+                
+                    <h1>اهلا وسهلاً بك عزيزي المستخدم ,,,</h1>
+                                
+                <br>
+                <h1> (إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُوْلَئِكَ كَانَ عَنْهُ مَسْئُولًا) </h1>
+                <form action="http://www.saber.wifi/logout" name="logout" onsubmit="return openLogout()">
+				<table border="0" class="tabula" dir="rtl"> 
+					<tbody><tr><td align="right"><b><font size="2">متصل منذ:</font></b></td><td><b>
+				<font size="2">45m39s</font></b></td></tr>
+				<!--
+			<tr><td align="right"><b><font size="2">اجمالي التحميل : <br> اجمالي الرفع :</font></b></td><td><b>
+				<font size="2">38.8 MiB <br> 18.7 MiB</font></b></td></tr>
+				-->
+					<tr><td align="right"><b><font size="2">تحميل هذه الجلسة:</font></b></td><td><b>
+				<font size="2">57.5 MiB</font></b></td></tr>
+
+		 
+				
+					<tr><td align="right"><b><font size="2">الوقت المتبقي:</font></b></td><td><b>
+				<font size="2">12h22m53s</font></b></td></tr>
+				
+							<tr><td align="right"><b><font size="2">التحميل المتبقي:</font></b></td><td><b>
+				<font size="2">  
+  <script language="JavaScript">document.write(readablizeBytes(826404215));</script>
+  </font></b></td></tr>
+		 
+				
+							<tr><td align="right"><b><font size="2"> الصلاحية حتى:</font></b></td><td><b>
+				<font size="2" id="expiration"></font></b></td></tr>
+</tbody></table>		 
+
+                    
+                    <!-- user manager link. if user manager resides on other router, replace www.saber.wifi by its address
+                    <button onclick="document.location='http://www.saber.wifi/user?subs='; return false;">status</button>
+                    <!-- end of user manager link -->
+                    <input type="submit" value="تسجيل خروج مؤقت">
+                    <br><br>
+                    <input type="submit" value="تسجيل خروج نهائي" onclick="removecookie()">
+                    
+
+                    
+                    
+
+				</form>
+            </div>
+        </div>
+    </div>
+    
+ <script type="text/javascript">
+document.getElementById("timeLeft").innerHTML = "12h22m53s".replace("w", " أسبوع , ").replace("d", " يوم , ").replace("h", " ساعة , ").replace("m", " دقيقة , ").replace("s", " ثانية");
+</script>
+
+<script type="text/javascript">
+document.getElementById("uptime").innerHTML = "45m39s".replace("w", " أسبوع , ").replace("d", " يوم , ").replace("h", " ساعة , ").replace("m", " دقيقة , ").replace("s", " ثانية");
+</script>
+	
+<script type="text/javascript">
+function getStatus(){
+	//$.mobile.loading('show');
+	$.get("http://ac.saber:88/api/status/50:D4:F7:DC:43:02/172.17.50.136",function(data,status){
+		if(data.status=="ok"){
+			if(data.radius_reply["Mikrotik-Total-Limit"]){
+				$("#remain-total").html(readablizeBytes(data.radius_reply["Mikrotik-Total-Limit"]));
+			}else if(data.radius_reply["Mikrotik-Total-Limit-Gigawords"]){
+				$("#remain-total").html(readablizeBytes((data.radius_reply["Mikrotik-Total-Limit-Gigawords"]*1000000000)));			
+			}			
+		$("#expiration").html(data.expiration_date.date.substr(0,19));
+		}
+		});
+	}
+getStatus();
+</script>
+
+
+
+</body></html>
