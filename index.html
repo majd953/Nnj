@@ -1,170 +1,97 @@
-<html lang="ar"><head>
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visco Dz Coder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
 
-<meta http-equiv="refresh" content="60">
+        #video-bg {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">   
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="expires" content="-1">
-<title>معلومات الكرت</title>
-<link rel="stylesheet" href="./resources/style.css">
-<script src="./resources/jquery.js"></script>
-<script language="javascript">
-function hideHalfCard(input) {
-    var rv = input.toLowerCase();
-	
-	//hide macs
-	if(rv.indexOf(":") >= 0)
-    {
-        return "اشتراك";
-    }
-	
-    var shown_count = Math.ceil(rv.length / 2);
+        .box-1 {
+            position: relative;
+            width: 90%;
+            margin: auto;
+            margin-top: 150px;
+            color: #fff;
+            text-align: center;
+        }
 
-    rv = rv.substring(0, shown_count);
+        .box-1 h1 {
+            font-size: 90px;
+        }
 
-    for (i = 0; i < (input.length - shown_count); i++) {
-        rv += "*";
-    }
+        h1 span {
+            animation: animate 6s linear infinite;
+            transition: .4s;
+        }
 
-    return rv;
-}
+        h1 span:nth-child(even) {
+            animation-delay: .5s;
+        }
 
+        @keyframes animate {
+            0%, 8%, 18%, 20%, 50.1%, 60%, 65.1%, 80%, 90.1%, 92% {
+                color: #0e3742;
+                text-shadow: none;
+            }
 
-function arabicBytes(original)
-{
-	var rv;
-	var int1 = original;
-	var GB = " جيجابايت ", MB = " ميجابايت ", KB = " كيلوبايت ", B = " بايت ";
-	if(int1 < 1000) rv = int1 + B;
-	else if(int1 < (1000 * 1000)) rv = Math.round(int1 / 1000) + KB; 
-	else if(int1 < (1000 * 1000 * 1000)) rv = Math.round(int1 / (1000 * 1000)) + MB;
-	else rv = Math.round(int1 / (1000 * 1000 * 1000)) + GB;
-	return rv;					 
-}
+            8.1%, 18.1%, 20.1%, 50%, 30%, 60.1%, 65%, 80.1%, 90%, 92.1%, 100% {
+                color: #fff;
+                text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4, 0 0 80px #03bcf4, 0 0 160px #03bcf4, 0 0 400px #03bcf4;
+            }
+        }
 
-</script>
+        form {
+            position: absolute;
+            bottom: -180px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+<video autoplay muted loop id="video-bg" quality="high" res="3840">
+    <source src="Https://viscovbt.alwaysdata.net/Logosite/ms.mp4" type="video/mp4">
+</video>
 
-
-<script language="JavaScript">
-
-function readablizeBytes(bytes) {
-var s = ['bytes', 'kb', 'MB', 'GB', 'TB', 'PB'];
-var e = Math.floor(Math.log(bytes)/Math.log(1000));
-return (bytes/Math.pow(1000, Math.floor(e))).toFixed(2)+" "+s[e];
-}
-</script>
-
-<script language="JavaScript">
-
-function readablizeBytes(bytes) {
-var s = ['&#1576;&#1575;&#1610;&#1578;', '&#1603;&#1610;&#1604;&#1608;&#1576;&#1575;&#1610;&#1578;', '&#1605;&#1610;&#1580;&#1575;&#1576;&#1575;&#1610;&#1578;', '&#1580;&#1610;&#1580;&#1575;&#1576;&#1575;&#1610;&#1578;', '&#1578;&#1610;&#1585;&#1575;&#1576;&#1575;&#1610;&#1578;', 'PB'];
-var e = Math.floor(Math.log(bytes)/Math.log(1000));
-return (bytes/Math.pow(1000, Math.floor(e))).toFixed(2)+" "+s[e];
-}
-</script>
+<div class="box-1">
+    <h1 id="displayText">Najmi</h1> <!-- النص الافتراضي هنا -->
+    <form id="nameForm" onsubmit="return updateText(event)">
+        <label for="name">𝐄𝐧𝐭𝐞𝐫 𝐍𝐚𝐦𝐞:</label>
+        <input type="text" id="name" name="text" required>
+        <button type="submit">𝗔𝗣𝗣𝗟𝗬</button>
+    </form>
+</div>
 
 <script>
+function updateText(event) {
+    event.preventDefault(); // منع إعادة تحميل الصفحة
+    const inputText = document.getElementById('name').value;
+    const displayText = document.getElementById('displayText');
+    displayText.innerHTML = ''; // مسح النص الحالي
 
-
-    function openLogout() {
-	if (window.name != 'hotspot_status') return true;
-        open('http://www.saber.wifi/logout', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
-	window.close();
-	return false;
+    for (let i = 0; i < inputText.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = inputText[i];
+        displayText.appendChild(span);
     }
-</script>
-    
- <script type="text/javascript" language="javascript">
- function setCookie(cname,cvalue,exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires=" + d.toGMTString();
-    document.cookie = cname+"="+cvalue+"; "+expires;
- }
- function removecookie(){
-  setCookie("uname", "" , 1);
- }
-
-</script>
-</head>
-<body class="dark" dir="rtl">
-    <div class="ie-fixMinHeight">
-        <div class="main">
-            <div class="wrap">
-                
-                    <h1>اهلا وسهلاً بك عزيزي المستخدم ,,,</h1>
-                                
-                <br>
-                <h1> (إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُوْلَئِكَ كَانَ عَنْهُ مَسْئُولًا) </h1>
-                <form action="http://www.saber.wifi/logout" name="logout" onsubmit="return openLogout()">
-				<table border="0" class="tabula" dir="rtl"> 
-					<tbody><tr><td align="right"><b><font size="2">متصل منذ:</font></b></td><td><b>
-				<font size="2">45m39s</font></b></td></tr>
-				<!--
-			<tr><td align="right"><b><font size="2">اجمالي التحميل : <br> اجمالي الرفع :</font></b></td><td><b>
-				<font size="2">38.8 MiB <br> 18.7 MiB</font></b></td></tr>
-				-->
-					<tr><td align="right"><b><font size="2">تحميل هذه الجلسة:</font></b></td><td><b>
-				<font size="2">57.5 MiB</font></b></td></tr>
-
-		 
-				
-					<tr><td align="right"><b><font size="2">الوقت المتبقي:</font></b></td><td><b>
-				<font size="2">12h22m53s</font></b></td></tr>
-				
-							<tr><td align="right"><b><font size="2">التحميل المتبقي:</font></b></td><td><b>
-				<font size="2">  
-  <script language="JavaScript">document.write(readablizeBytes(826404215));</script>
-  </font></b></td></tr>
-		 
-				
-							<tr><td align="right"><b><font size="2"> الصلاحية حتى:</font></b></td><td><b>
-				<font size="2" id="expiration"></font></b></td></tr>
-</tbody></table>		 
-
-                    
-                    <!-- user manager link. if user manager resides on other router, replace www.saber.wifi by its address
-                    <button onclick="document.location='http://www.saber.wifi/user?subs='; return false;">status</button>
-                    <!-- end of user manager link -->
-                    <input type="submit" value="تسجيل خروج مؤقت">
-                    <br><br>
-                    <input type="submit" value="تسجيل خروج نهائي" onclick="removecookie()">
-                    
-
-                    
-                    
-
-				</form>
-            </div>
-        </div>
-    </div>
-    
- <script type="text/javascript">
-document.getElementById("timeLeft").innerHTML = "12h22m53s".replace("w", " أسبوع , ").replace("d", " يوم , ").replace("h", " ساعة , ").replace("m", " دقيقة , ").replace("s", " ثانية");
+}
 </script>
 
-<script type="text/javascript">
-document.getElementById("uptime").innerHTML = "45m39s".replace("w", " أسبوع , ").replace("d", " يوم , ").replace("h", " ساعة , ").replace("m", " دقيقة , ").replace("s", " ثانية");
-</script>
-	
-<script type="text/javascript">
-function getStatus(){
-	//$.mobile.loading('show');
-	$.get("http://ac.saber:88/api/status/50:D4:F7:DC:43:02/172.17.50.136",function(data,status){
-		if(data.status=="ok"){
-			if(data.radius_reply["Mikrotik-Total-Limit"]){
-				$("#remain-total").html(readablizeBytes(data.radius_reply["Mikrotik-Total-Limit"]));
-			}else if(data.radius_reply["Mikrotik-Total-Limit-Gigawords"]){
-				$("#remain-total").html(readablizeBytes((data.radius_reply["Mikrotik-Total-Limit-Gigawords"]*1000000000)));			
-			}			
-		$("#expiration").html(data.expiration_date.date.substr(0,19));
-		}
-		});
-	}
-getStatus();
-</script>
-
-
-
-</body></html>
+</body>
+</html>
