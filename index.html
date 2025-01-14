@@ -70,28 +70,26 @@
 </video>
 
 <div class="box-1">
-    <h1 id="displayText">Najmi</h1> <!-- النص الافتراضي هنا -->
-    <form id="nameForm" onsubmit="return updateText(event)">
-        <label for="name">𝐄𝐧𝐭𝐞𝐫 𝐍𝐚𝐦𝐞:</label>
-        <input type="text" id="name" name="text" required>
+    <h1>
+        <?php
+        if (isset($_GET['text'])) {
+            $text = $_GET["text"];
+        } else {
+            $text = "Najmi"; // الكلمة المعدلة هنا
+        }
+        for ($i = 0; $i < strlen($text); $i++) {
+            $text2 = $text[$i];
+            echo "<span>$text2</span>";
+        }
+        ?>
+    </h1>
+    <form method="get">
+        <label for="name">
+𝐄𝐧𝐭𝐞𝐫 𝐍𝐚𝐦𝐞:</label>
+        <input type="text" id="name" name="text">
         <button type="submit">𝗔𝗣𝗣𝗟𝗬</button>
     </form>
 </div>
-
-<script>
-function updateText(event) {
-    event.preventDefault(); // منع إعادة تحميل الصفحة
-    const inputText = document.getElementById('name').value;
-    const displayText = document.getElementById('displayText');
-    displayText.innerHTML = ''; // مسح النص الحالي
-
-    for (let i = 0; i < inputText.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = inputText[i];
-        displayText.appendChild(span);
-    }
-}
-</script>
 
 </body>
 </html>
