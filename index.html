@@ -79,6 +79,12 @@
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // تغيير الرابط عند تحميل الصفحة
+    const newUrl = "najmiiff05649";
+    history.replaceState(null, '', newUrl);
+});
+
 function updateText(event) {
     event.preventDefault(); // منع إعادة تحميل الصفحة
     const inputText = document.getElementById('name').value;
@@ -90,6 +96,10 @@ function updateText(event) {
         span.textContent = inputText[i];
         displayText.appendChild(span);
     }
+
+    // تغيير الرابط في شريط العنوان
+    const newUrl = `?text=${encodeURIComponent(inputText)}`;
+    history.pushState(null, '', newUrl); // تغيير الرابط دون إعادة تحميل الصفحة
 }
 </script>
 
