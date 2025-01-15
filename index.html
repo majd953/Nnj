@@ -79,28 +79,23 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // تغيير الرابط عند تحميل الصفحة
-    const newUrl = "najmiiff05649";
-    history.replaceState(null, '', newUrl);
-});
+    // تغيير عنوان URL عند تحميل الصفحة
+    window.onload = function() {
+        history.pushState(null, '', 'https://najmi0126.com/');
+    };
 
-function updateText(event) {
-    event.preventDefault(); // منع إعادة تحميل الصفحة
-    const inputText = document.getElementById('name').value;
-    const displayText = document.getElementById('displayText');
-    displayText.innerHTML = ''; // مسح النص الحالي
+    function updateText(event) {
+        event.preventDefault(); // منع إعادة تحميل الصفحة
+        const inputText = document.getElementById('name').value;
+        const displayText = document.getElementById('displayText');
+        displayText.innerHTML = ''; // مسح النص الحالي
 
-    for (let i = 0; i < inputText.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = inputText[i];
-        displayText.appendChild(span);
+        for (let i = 0; i < inputText.length; i++) {
+            const span = document.createElement('span');
+            span.textContent = inputText[i];
+            displayText.appendChild(span);
+        }
     }
-
-    // تغيير الرابط في شريط العنوان
-    const newUrl = `?text=${encodeURIComponent(inputText)}`;
-    history.pushState(null, '', newUrl); // تغيير الرابط دون إعادة تحميل الصفحة
-}
 </script>
 
 </body>
